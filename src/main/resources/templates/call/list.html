@@ -45,9 +45,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="board : ${callList}">
-            <td th:text="${callList.r_file_nm}">Mark</td>
-            <td th:text="${callList.r_usr_nm}">Otto</td>
+        <tr th:each="call : ${callList}">
+            <td th:text="${call.rFileNm}">Mark</td>
+            <td th:text="${call.rUsrNm}">Otto</td>
             <td>홍길동</td>
         </tr>
     </table>
