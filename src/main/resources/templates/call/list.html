@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="fragments/common1 :: head('계시판')">
+<head th:replace="fragments/common :: head('계시판')">
 
 </head>
 <body>
 <div class="main-wrapper">
 
     <!-- partial:../../partials/_sidebar.html -->
-    <nav class="sidebar" th:replace="fragments/common1 :: sidebar('sidebar')">
+    <nav class="sidebar" th:replace="fragments/common :: sidebar('sidebar')">
     </nav>
 
-    <nav class="settings-sidebar" th:replace="fragments/common1 :: settings-sidebar('settings-sidebar')">
+    <nav class="settings-sidebar" th:replace="fragments/common :: settings-sidebar('settings-sidebar')">
     </nav>
     <!-- partial -->
 
     <div class="page-wrapper">
 
         <!-- partial:../../partials/_navbar.html -->
-        <nav class="navbar" th:replace="fragments/common1 :: navbar('navbar')">
+        <nav class="navbar" th:replace="fragments/common :: navbar('navbar')">
         </nav>
         <!-- partial -->
 
