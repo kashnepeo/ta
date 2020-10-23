@@ -22,6 +22,6 @@ public class ChatController {
     public String list(Model model, Pageable pageable) {
         List<CallEntity> callList = callRepository.findByYyyymmdd("20200520", pageable);
         model.addAttribute("callList", callList);
-        return "call/list";
+        return "callList";
     }
 }
