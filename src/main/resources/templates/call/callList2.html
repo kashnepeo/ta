@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/common/main_header::main_header}">
+<body>
+<div class="main-wrapper">
+    <nav th:replace="~{fragments/common/main_sidebar::main_sidebar}"></nav>
+    <div class="page-wrapper">
+        <nav th:replace="~{fragments/common/main_navbar::main_navbar}"></nav>
+        <div class="page-content">
+
+            <nav class="page-breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Data Table</li>
+                </ol>
+            </nav>
+
+            <div class="row">
+                <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title">Data Table</h6>
+                            <p class="card-description">Read the <a href="https://datatables.net/" target="_blank">
+                                Official DataTables Documentation </a>for a full list of instructions and other options.
+                            </p>
+                            <div class="table-responsive">
+                                <div id="dataTableExample_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer" >
+                                    <th:block th:if="${callList != null}">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="dataTables_length" id="dataTableExample_length"><label>Show
+                                                    <select id="view" name="dataTableExample_length" aria-controls="dataTableExample"
+                                                            class="custom-select custom-select-sm form-control"
+                                                            onchange="view()">
+                                                        <option th:selected="${size == 10}" value="10">10</option>
+                                                        <option th:selected="${size == 30}"value="30">30</option>
+                                                        <option th:selected="${size == 50}"value="50">50</option>
+                                                    </select> entries</label></div>
+                                            </div>
+
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div id="dataTableExample_filter" class="dataTables_filter">
+                                                        <label>
+                                                            <form class="form-inline d-flex justify-content-end">
+                                                            <input type="search" class="form-control" placeholder="Search" aria-controls="dataTableExample"
+                                                                   id="searchText" name="searchText"
+                                                                    th:value="${searchText}">
+                                                                <button type="button" class="btn btn-primary" th:onclick="search()">검색</button>
+                                                            </form>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12" >
+                                                <table id="dataTableExample" class="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>번호</th>
+                                                        <th>콜 아이디</th>
+                                                        <th>상담원 아이디</th>
+                                                        <th>상담원 이름</th>
+                                                        <th>상담일</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr th:each="call, index : ${callList}">
+                                                        <td th:text="${currentPageNumber == 0} ? ${index.index+1} : ${(((currentPageNumber + 1) * size) - size)+index.index+1}"></td>
+                                                        <td th:text="${call.rFileNm}"></td>
+                                                        <td th:text="${call.rUsrId}"></td>
+                                                        <td th:text="${call.rUsrNm}"></td>
+                                                        <td th:text="${call.yyyymmdd}"></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-5">
+                                                <div class="dataTables_info" id="dataTableExample_info" role="status"
+                                                     aria-live="polite">Showing
+                                                    <span th:text="${currentPageNumber == 0} ? 1: ${((currentPageNumber + 1) * size + 1) - size} "></span> to
+                                                    <span th:text="${(currentPageNumber + 1) * size}"></span> of
+                                                    <span th:text="${totalElementsNumber}"></span> entries
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-7">
+                                                <div class="dataTables_paginate paging_simple_numbers"
+                                                     id="dataTableExample_paginate">
+                                                    <ul class="pagination">
+                                                        <li class="paginate_button page-item previous" id="dataTableExample_previous"
+                                                            th:classappend="${0 == currentPageNumber } ? 'disabled'">
+<!--                                                            <a href="#"-->
+<!--                                                               th:href="@{/call/viewCallList2.do(page=${currentPageNumber - 1}, searchText=${param.searchText})}"-->
+<!--                                                               aria-controls="dataTableExample" data-dt-idx="0" tabindex="0" class="page-link">Previous-->
+<!--                                                            </a>-->
+                                                            <button aria-controls="dataTableExample" data-dt-idx="4" tabindex="0" class="page-link"
+                                                                    th:onclick="'previous('+${currentPageNumber}+')'" >Previous
+                                                            </button>
+                                                        </li>
+                                                        <li class="paginate_button page-item "
+                                                            th:classappend="${i == currentPageNumber } ? 'active'"
+                                                            th:each="i : ${#numbers.sequence(startPage, endPage)}">
+<!--                                                            <a href="#"-->
+<!--                                                               th:href="@{/call/viewCallList2.do(page=${i},searchText=${param.searchText})}"-->
+<!--                                                               th:text="${i+1}"-->
+<!--                                                               aria-controls="dataTableExample" data-dt-idx="1" tabindex="0" class="page-link">1-->
+<!--                                                            </a>-->
+                                                            <a href="javascript:void(0)"
+                                                               th:onclick="'page('+${i}+')'"
+                                                               th:text="${i+1}"
+                                                               aria-controls="dataTableExample" data-dt-idx="1" tabindex="0" class="page-link">1
+                                                            </a>
+                                                        </li>
+
+                                                        <li class="paginate_button page-item next" id="dataTableExample_next"
+                                                            th:classappend="${totalPagesNumber == currentPageNumber + 1} ? 'disabled'">
+<!--                                                            <a href="#" aria-controls="dataTableExample" data-dt-idx="4" tabindex="0" class="page-link"-->
+<!--                                                               th:href="@{/call/viewCallList2.do(page=${currentPageNumber + 1},searchText=${param.searchText})}">Next-->
+<!--                                                            </a>-->
+                                                            <button aria-controls="dataTableExample" data-dt-idx="4" tabindex="0" class="page-link"
+                                                               th:onclick="'next('+${currentPageNumber}+')'" >Next
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:replace="~{fragments/common/main_footer::main_footer}"></div>
+        </div>
+    </div>
+</div>
+<!-- core:js -->
+<script th:src="@{/assets/vendors/core/core.js}"></script>
+<!-- endinject -->
+<!-- plugin js for this page -->
+<script th:src="@{/assets/vendors/datatables.net/jquery.dataTables.js}"></script>
+<script th:src="@{/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js}"></script>
+<!-- end plugin js for this page -->
+<!-- inject:js -->
+<script th:src="@{/assets/vendors/feather-icons/feather.min.js}"></script>
+<script th:src="@{/assets/js/template.js}"></script>
+<!-- endinject -->
+<!-- custom js for this page -->
+<script th:src="@{/ta/js/common/common-data-table.js}"></script>
+<!-- end custom js for this page -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+!-- axios -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    $("#nav_menu_area #nav_menu li").on("click", function () {
+        $("#nav_menu_area #nav_menu li").removeClass("active");
+        $(this).addClass("active");
+        location.href = $(this).data('href');
+    });
+
+    function view() {
+        var size = $("#view").val();
+        var searchText = $('#searchText').val();
+        $.ajax({
+            url: "/call/retrieveCallList2.do?",
+            data: {"size": size, "searchText": searchText},
+            type: "POST",
+            cache: false
+        }).done(function (fragment) {
+            $("#dataTableExample_wrapper").replaceWith(fragment);
+        });
+
+    }
+
+    function search() {
+        var searchText = $('#searchText').val();
+        var size = $("#view").val();
+        $.ajax({
+            url: "/call/retrieveCallList2.do?",
+            data: {"size": size, "searchText": searchText},
+            type: "POST",
+            cache: false
+        }).done(function (fragment) {
+            $("#dataTableExample_wrapper").replaceWith(fragment);
+        });
+
+    }
+
+    function next(param) {
+        var nextpage = param + 1;
+        var searchText = $('#searchText').val();
+        var size = $("#view").val();
+        $.ajax({
+            url: "/call/retrieveCallList2.do",
+            data: {"size" : size, "page" : nextpage, "searchText" : searchText},
+            type: "POST",
+            cache: false
+        }).done(function (fragment) {
+            $("#dataTableExample_wrapper").replaceWith(fragment);
+        });
+    }
+
+    function previous(param) {
+        var previousPage = param - 1;
+        var searchText = $('#searchText').val();
+        var size = $("#view").val();
+        $.ajax({
+            url: "/call/retrieveCallList2.do",
+            data: {"size" : size, "page" : previousPage, "searchText" : searchText},
+            type: "POST",
+            cache: false
+        }).done(function (fragment) {
+            $("#dataTableExample_wrapper").replaceWith(fragment);
+        });
+    }
+
+    function page(param) {
+        var page = param;
+        var searchText = $('#searchText').val();
+        var size = $("#view").val();
+        $.ajax({
+            url: "/call/retrieveCallList2.do",
+            data: {"size" : size, "page" : page, "searchText" : searchText},
+            type: "POST",
+            cache: false
+        }).done(function (fragment) {
+            $("#dataTableExample_wrapper").replaceWith(fragment);
+        });
+    }
+
+    function inputData() {
+        $.ajax({
+            url: "/call/retrieveCallList2.do?",
+            type: "POST",
+            cache: false
+        }).done(function (fragment) {
+            $("#dataTableExample_wrapper").replaceWith(fragment);
+        });
+    }
+
+    inputData()
+
+</script>
+
+
+</body>
+</html>
