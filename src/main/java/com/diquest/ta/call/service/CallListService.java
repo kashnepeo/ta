@@ -73,19 +73,19 @@ public class CallListService {
     private Predicate<CallEntity> filterCallLists(PagingRequest pagingRequest) {
         if (pagingRequest.getSearch() == null || StringUtils.isEmpty(pagingRequest.getSearch()
                 .getValue())) {
-            return calList -> true;
+            return callList -> true;
         }
 
         String value = pagingRequest.getSearch()
                 .getValue();
 
-        return calList -> calList.getRFileNm()
+        return callList -> callList.getRFileNm()
                 .toLowerCase()
                 .contains(value)
-                || calList.getYyyymmdd()
+                || callList.getYyyymmdd()
                 .toLowerCase()
                 .contains(value)
-                || calList.getRUsrId()
+                || callList.getRUsrId()
                 .toLowerCase()
                 .contains(value);
     }

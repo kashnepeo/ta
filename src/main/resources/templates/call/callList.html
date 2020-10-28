@@ -120,6 +120,7 @@
         </div>
     </div>
 </div>
+
 <script>
     $("#nav_menu_area #nav_menu li").on("click", function () {
         $("#nav_menu_area #nav_menu li").removeClass("active");
@@ -131,17 +132,11 @@
         var page = 1;
         var size = 10;
         var sort = 'rFileNm.desc';
-        var token = $("meta[name='_csrf']").attr("content");
-        var header = $("meta[name='_csrf_header']").attr("content");
-
         $.ajax({
             url: "/call/retrieveCallList.do",
             // data: {page: page, size: size, sort: sort},
             type: "POST",
-            cache: false,
-            before: function (xhr) {
-                xhr.setRequestHeader(header, token);
-            }
+            cache: false
         }).done(function (fragment) {
             $("#dataTableExample_wrapper").replaceWith(fragment);
         });
