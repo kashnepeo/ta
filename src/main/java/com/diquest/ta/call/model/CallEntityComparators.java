@@ -23,20 +23,20 @@ public final class CallEntityComparators {
     static Map<Key, Comparator<CallEntity>> map = new HashMap<>();
 
     static {
-        map.put(new Key("name", Direction.asc), Comparator.comparing(CallEntity::getRFileNm));
-        map.put(new Key("name", Direction.desc), Comparator.comparing(CallEntity::getRFileNm)
+        map.put(new Key("rfileNm", Direction.asc), Comparator.comparing(CallEntity::getRFileNm));
+        map.put(new Key("rfileNm", Direction.desc), Comparator.comparing(CallEntity::getRFileNm)
                 .reversed());
 
-        map.put(new Key("start_date", Direction.asc), Comparator.comparing(CallEntity::getYyyymmdd));
-        map.put(new Key("start_date", Direction.desc), Comparator.comparing(CallEntity::getYyyymmdd)
+        map.put(new Key("yyyymmdd", Direction.asc), Comparator.comparing(CallEntity::getYyyymmdd));
+        map.put(new Key("yyyymmdd", Direction.desc), Comparator.comparing(CallEntity::getYyyymmdd)
                 .reversed());
 
-        map.put(new Key("position", Direction.asc), Comparator.comparing(CallEntity::getRUsrId));
-        map.put(new Key("position", Direction.desc), Comparator.comparing(CallEntity::getRUsrId)
+        map.put(new Key("rusrId", Direction.asc), Comparator.comparing(CallEntity::getRUsrId));
+        map.put(new Key("rusrId", Direction.desc), Comparator.comparing(CallEntity::getRUsrId)
                 .reversed());
 
-        map.put(new Key("salary", Direction.asc), Comparator.comparing(CallEntity::getRUsrNm));
-        map.put(new Key("salary", Direction.desc), Comparator.comparing(CallEntity::getRUsrNm)
+        map.put(new Key("rusrNm", Direction.asc), Comparator.comparing(CallEntity::getRUsrNm));
+        map.put(new Key("rusrNm", Direction.desc), Comparator.comparing(CallEntity::getRUsrNm)
                 .reversed());
 
     }

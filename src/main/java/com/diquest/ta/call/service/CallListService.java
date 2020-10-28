@@ -79,13 +79,13 @@ public class CallListService {
         String value = pagingRequest.getSearch()
                 .getValue();
 
-        return calList -> calList.getRFileNm()
+        return callList -> callList.getRFileNm()
                 .toLowerCase()
                 .contains(value)
-                || calList.getYyyymmdd()
+                || callList.getYyyymmdd()
                 .toLowerCase()
                 .contains(value)
-                || calList.getRUsrId()
+                || callList.getRUsrId()
                 .toLowerCase()
                 .contains(value);
     }
