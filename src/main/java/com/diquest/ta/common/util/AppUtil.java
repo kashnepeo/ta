@@ -1,4 +1,4 @@
-package com.diquest.common.util;
+package com.diquest.ta.common.util;
 
 public class AppUtil {
     public static String setErrLogFormat(String name, String resultCode, String resultMessage, String exceptionMessage) {

@@ -1,4 +1,4 @@
-package com.diquest.common.constant;
+package com.diquest.ta.common.constant;
 
 public enum CommonConstants {
     RESULT_CODE0("000"),

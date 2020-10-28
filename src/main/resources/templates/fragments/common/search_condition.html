@@ -1,6 +1,6 @@
 <html lagn="ko"
       xmlns:th="http://www.thymeleaf.org">
-<div class="row" th:fragment="search_condition">
+<div class="row" id="search_condition" th:fragment="search_condition">
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -12,9 +12,9 @@
                                 <label class for="dateType">조회 구분</label>
                                 <select class="form-control marginRight20px" id="dateType">
                                     <option selected="" disabled="">선택</option>
-                                    <option value="DAY">일별</option>
-                                    <option value="WEEK">주별</option>
-                                    <option value="MONTH">월별</option>
+                                    <div th:each="code : ${codeList}">
+                                        <option th:if="${code.groupCode == 'dateType'}" th:value="${code.code}" th:text="${code.name}"></option>
+                                    </div>
                                 </select>
                             </div>
                         </div>
@@ -57,7 +57,9 @@
                                 <label class for="centerType">센터</label>
                                 <select class="form-control" id="centerType">
                                     <option selected="" disabled="">선택</option>
-                                    <option value="DFS">서울센터</option>
+                                    <div th:each="code : ${codeList}">
+                                        <option th:if="${code.groupCode == 'centerType'}" th:value="${code.code}" th:text="${code.name}"></option>
+                                    </div>
                                 </select>
                             </div>
                         </div>
@@ -66,10 +68,9 @@
                                 <label class for="timeType">상담 시간</label>
                                 <select class="form-control" id="timeType">
                                     <option selected="" disabled="">선택</option>
-                                    <option value="A">오전(08:30~12:00)</option>
-                                    <option value="P">오후(12:00~18:00)</option>
-                                    <option value="E">저녁(18:00~21:00)</option>
-                                    <option value="N">밤(21:00~23:00)</option>
+                                    <div th:each="code : ${codeList}">
+                                        <option th:if="${code.groupCode == 'timeType'}" th:value="${code.code}" th:text="${code.name}"></option>
+                                    </div>
                                 </select>
                             </div>
                         </div>
@@ -78,11 +79,9 @@
                                 <label class for="durationType">통화 길이</label>
                                 <select class="form-control" id="durationType">
                                     <option selected="" disabled="">선택</option>
-                                    <option value="1">0~60초</option>
-                                    <option value="2">1분~3분</option>
-                                    <option value="3">3분~5분</option>
-                                    <option value="4">5분~10분</option>
-                                    <option value="5">10분 이상</option>
+                                    <div th:each="code : ${codeList}">
+                                        <option th:if="${code.groupCode == 'durationType'}" th:value="${code.code}" th:text="${code.name}"></option>
+                                    </div>
                                 </select>
                             </div>
                         </div>

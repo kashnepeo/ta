@@ -1,7 +1,7 @@
 package com.diquest.ta.call.controller;
 
-import com.diquest.common.constant.CommonConstants;
-import com.diquest.common.util.AppUtil;
+import com.diquest.ta.common.constant.CommonConstants;
+import com.diquest.ta.common.util.AppUtil;
 import com.diquest.ta.call.model.CallEntity;
 import com.diquest.ta.call.repository.CallRepository;
 import org.slf4j.Logger;
@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -18,10 +17,7 @@ import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/call")
@@ -33,6 +29,9 @@ public class CallController {
 
     @Autowired
     private CallRepository callRepository;
+
+    private CodeRepository codeRepository = new CodeRepository();
+
 
     /**
      * @MethodName : viewCallList
@@ -119,5 +118,8 @@ public class CallController {
     public String viewCallList3() {
         return "call/callList3";
     }
+
+
+
 
 }
