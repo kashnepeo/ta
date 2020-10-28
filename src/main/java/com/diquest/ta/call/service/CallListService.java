@@ -73,7 +73,7 @@ public class CallListService {
     private Predicate<CallEntity> filterCallLists(PagingRequest pagingRequest) {
         if (pagingRequest.getSearch() == null || StringUtils.isEmpty(pagingRequest.getSearch()
                 .getValue())) {
-            return calList -> true;
+            return callList -> true;
         }
 
         String value = pagingRequest.getSearch()

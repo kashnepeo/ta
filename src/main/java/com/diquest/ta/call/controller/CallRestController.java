@@ -12,7 +12,7 @@ import com.diquest.ta.call.model.paging.PagingRequest;
 import com.diquest.ta.call.service.CallListService;
 
 @RestController
-@RequestMapping("calListRest")
+@RequestMapping("callListRest")
 public class CallRestController {
 
     private final CallListService callListService;
