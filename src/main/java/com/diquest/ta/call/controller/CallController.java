@@ -30,9 +30,6 @@ public class CallController {
     @Autowired
     private CallRepository callRepository;
 
-    private CodeRepository codeRepository = new CodeRepository();
-
-
     /**
      * @MethodName : viewCallList
      * @date : 2020.10.27

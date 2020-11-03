@@ -13,7 +13,7 @@
                                 <select class="form-control marginRight20px" id="dateType">
                                     <option selected="" disabled="">선택</option>
                                     <div th:each="code : ${codeList}">
-                                        <option th:if="${code.groupCode == 'dateType'}" th:value="${code.code}" th:text="${code.name}"></option>
+                                        <option th:if="${code.groupCode == 'dateType'}" th:value="${code.code}" th:text="${code.name}" th:selected="${code.code == 'DAY'}"></option>
                                     </div>
                                 </select>
                             </div>
