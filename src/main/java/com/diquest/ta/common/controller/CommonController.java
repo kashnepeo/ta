@@ -69,6 +69,7 @@ public class CommonController {
                 }
 
                 model.addAttribute("codeList", codeList);
+                model.addAttribute("dateType", "DAY");
                 model.addAttribute(CommonConstants.RESULT_CODE_NAME, resultCode);
                 model.addAttribute(CommonConstants.RESULT_MESSAGE_NAME, resultMessage);
             } catch (Exception e) {

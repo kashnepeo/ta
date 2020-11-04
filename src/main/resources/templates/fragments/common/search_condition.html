@@ -1,5 +1,6 @@
 <html lagn="ko"
       xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="test">
 <div class="row" id="search_condition" th:fragment="search_condition">
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
@@ -11,7 +12,7 @@
                             <div class="form-group">
                                 <label class for="dateType">조회 구분</label>
                                 <select class="form-control marginRight20px" id="dateType">
-                                    <option selected="" disabled="">선택</option>
+<!--                                    <option selected="" disabled="">선택</option>-->
                                     <div th:each="code : ${codeList}">
                                         <option th:if="${code.groupCode == 'dateType'}" th:value="${code.code}" th:text="${code.name}" th:selected="${code.code == 'DAY'}"></option>
                                     </div>
@@ -56,7 +57,7 @@
                             <div class="form-group">
                                 <label class for="centerType">센터</label>
                                 <select class="form-control" id="centerType">
-                                    <option selected="" disabled="">선택</option>
+<!--                                    <option selected="" disabled="">선택</option>-->
                                     <div th:each="code : ${codeList}">
                                         <option th:if="${code.groupCode == 'centerType'}" th:value="${code.code}" th:text="${code.name}"></option>
                                     </div>
@@ -67,7 +68,7 @@
                             <div class="form-group">
                                 <label class for="timeType">상담 시간</label>
                                 <select class="form-control" id="timeType">
-                                    <option selected="" disabled="">선택</option>
+<!--                                    <option selected="" disabled="">선택</option>-->
                                     <div th:each="code : ${codeList}">
                                         <option th:if="${code.groupCode == 'timeType'}" th:value="${code.code}" th:text="${code.name}"></option>
                                     </div>
@@ -78,7 +79,7 @@
                             <div class="form-group">
                                 <label class for="durationType">통화 길이</label>
                                 <select class="form-control" id="durationType">
-                                    <option selected="" disabled="">선택</option>
+<!--                                    <option selected="" disabled="">선택</option>-->
                                     <div th:each="code : ${codeList}">
                                         <option th:if="${code.groupCode == 'durationType'}" th:value="${code.code}" th:text="${code.name}"></option>
                                     </div>
@@ -106,5 +107,8 @@
             </div>
         </div>
     </div>
-</div>
+    <input type="hidden" name="hiddenDateType" th:value="${dateType}">
+</div><!-- end of th:fragment="search_condition" -->
+        <script th:src="@{/ta/js/common/common-datepicker.js}"></script>
+</th:block>
 </html>

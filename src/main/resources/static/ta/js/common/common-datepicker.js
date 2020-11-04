@@ -1,20 +1,4 @@
-$(function () {
-    var d = new Date();
-    // d.setDate(dateFormatter(getDate('DAY', -7).substring(0, 8), 'yyyy-MM-dd'));
-    $('#startDate').datepicker({
-        format: 'yyyy-mm-dd',
-        autoclose: true, // 날짜 클릭시 캘린더가 자동으로 닫힘
-        startView: "days",
-        minViewMode: "days"
-
-    }).datepicker('setDate',d);
-    $('#endDate').datepicker({
-        format: 'yyyy-mm-dd',
-        autoclose: true, // 날짜 클릭시 캘린더가 자동으로 닫힘
-        startView: "days",
-        minViewMode: "days"
-
-    });
+$(function ($) {
     'use strict';
 
     /**
@@ -79,11 +63,11 @@ $(function () {
     };
 
     /**
-     * 날짜양식변경
+     * dateFormatter : 날짜양식변경
      * _yyyyMMdd : yyyyMMdd형태의 날짜 데이터(yyyyMMddhhmmss)형태까지 변환가능
      * _seperator : 날짜양식(예: yyyy-MM-dd hh:mm:ss)
      */
-    function dateFormatter(_yyyyMMdd, _seperator) { // '2018-02-23', 'yyyy-MM-dd'
+    function dateFormatter(_yyyyMMdd, _seperator) {
         _yyyyMMdd = _yyyyMMdd.replace(/-| |:/gi, '');
 
         var year, month, day, hour, min, sec;
@@ -118,175 +102,64 @@ $(function () {
         _seperator = _seperator.replace('mm', min);
         _seperator = _seperator.replace('ss', sec);
 
-        console.log('_seperator > ', _seperator);
+        // console.log('_seperator > ', _seperator);
         return _seperator;
     };
 
     /**
-     * 조회 구분 변경 시 datepicker의 startView 변경
+     * fnDatePicker : datepicker 공통함수
+     * _obj : datepicker를 만들 요소 id
+     * _option : datepicker 옵션
+     * _type : dateType (예 : day, week, month, year)
+     * _addNum : 추가할 날짜 (양수, 음수 둘 다 가능)
+     * _seperator : 날짜양식(예: yyyy-MM-dd hh:mm:ss)
      */
-    function dateTypeInit() {
-        if ($('#dateType').val() == 'MONTH') {
-            $('#startDate').datepicker({
-                format: "yyyy-mm", //데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
-                autoclose: true, // 날짜 클릭시 캘린더가 자동으로 닫힘
-                startView: "months",
-                minViewMode: "months"
-                // locale:'ko'
-            }).datepicker('setDate', dateFormatter(getDate('MONTH', -1).substring(0, 8), 'yyyy-MM'));
-            $('#endDate').datepicker({
-                format: "yyyy-mm", //데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
-                autoclose: true, // 날짜 클릭시 캘린더가 자동으로 닫힘
-                startView: "months",
-                minViewMode: "months"
-                // locale:'ko'
-            });
-
-            $('#startDate > input').val(dateFormatter(getDate('MONTH', -1).substring(0, 8), 'yyyy-MM'));
-            $('#endDate > input').val(dateFormatter(getDate('MONTH', 0).substring(0, 8), 'yyyy-MM'));
-        } else if ($('#dateType').val() == 'WEEK') {
-            $('#startDate').datepicker({
-                format: 'yyyy-mm-dd',
-                autoclose: true, // 날짜 클릭시 캘린더가 자동으로 닫힘
-                startView: "days",
-                minViewMode: "days"
-                // locale:'ko'
-            });
-            $('#endDate').datepicker({
-                format: 'yyyy-mm-dd',
-                autoclose: true, // 날짜 클릭시 캘린더가 자동으로 닫힘
-                startView: "days",
-                minViewMode: "days",
-                maxViewMode: "years"
-                // locale:'ko'
-            });
-
-            $('#startDate > input').val(dateFormatter(getDate('WEEK', -28).substring(0, 8), 'yyyy-MM-dd'));
-            $('#endDate > input').val(dateFormatter(getDate('WEEK', 0).substring(0, 8), 'yyyy-MM-dd'));
-
-        } else if ($('#dateType').val() == 'DAY') {
-            // 일별 ------------------------------------------------------------
-            $('#startDate').datepicker({
-                format: 'yyyy-mm-dd',
-                autoclose: true, // 날짜 클릭시 캘린더가 자동으로 닫힘
-                startView: "days",
-                minViewMode: "days"
-
-            }).datepicker('setDate', dateFormatter(getDate('DAY', -7).substring(0, 8), 'yyyy-MM-dd'));
-            $('#endDate').datepicker({
-                format: 'yyyy-mm-dd',
-                autoclose: true, // 날짜 클릭시 캘린더가 자동으로 닫힘
-                startView: "days",
-                minViewMode: "days"
-
-            });
-
-            $('#startDate > input').val(dateFormatter(getDate('DAY', -7).substring(0, 8), 'yyyy-MM-dd'));
-            $('#endDate > input').val(dateFormatter(getDate('DAY', -1).substring(0, 8), 'yyyy-MM-dd'));
-
-        }
+    function fnDatePicker(_obj, _option, _type, _addNum, _seperator) {
+        let year = dateFormatter(getDate('DAY', _addNum).substring(0, 8), _seperator.replace('-', '')).substring(0, 4);
+        let month = dateFormatter(getDate('DAY', _addNum).substring(0, 8), _seperator.replace('-', '')).substring(4, 6);
+        let date = dateFormatter(getDate('DAY', _addNum).substring(0, 8), _seperator.replace('-', '')).substring(6);
+        $(_obj).datepicker('destroy').datepicker(_option);
+        $(_obj + ' > input').val(dateFormatter(getDate(_type.toUpperCase().replace('s',''), _addNum).substring(0, 8), _seperator));
     }
 
     /**
-     * 조회 구분 변경 시 datepicker의 startView 변경
+     * 조회구분 dropdown 변경할 때마다 datepicker startView 변경
      */
-    $('#dateType').change(function () {
-        if ($(this).val() == 'MONTH') {
-            let startDate = dateFormatter(getDate('MONTH', -1).substring(0, 8), 'yyyy-MM');
-            let endDate = dateFormatter(getDate('MONTH', 0).substring(0, 8), 'yyyy-MM');
-            $('#startDate').datepicker({
-                format: 'yyyy-mm', //데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
-                autoclose: true, // 날짜 클릭시 캘린더가 자동으로 닫힘
-                toDisplay: function (date, format, language) {
-                    var d = new Date();
-                    d.setDate(startDate);
-                    return d.toISOString();
-                },
-                toValue: function (date, format, language) {
-                    var d = new Date();
-                    d.setDate(startDate);
-                    return d.toISOString();
-                },
-                immediateUpdates:true,
-                // startView: 'year',
-                minViewMode: 1
-                // locale:'ko'
-            });
-            $('#endDate').datepicker({
-                format: 'yyyy-mm', //데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
-                autoclose: true, // 날짜 클릭시 캘린더가 자동으로 닫힘
-                toDisplay: function (date, format, language) {
-                    var d = new Date();
-                    d.setDate(startDate);
-                    return d.toISOString();
-                },
-                toValue: function (date, format, language) {
-                    var d = new Date();
-                    d.setDate(startDate);
-                    return d.toISOString();
-                },
-                immediateUpdates:true,
-                language: 'ko', // locale 설정
-                minViewMode: '1'
-                // locale:'ko'
-            });
-
-            // $('#startDate > input').val(dateFormatter(getDate('MONTH', -1).substring(0, 8), 'yyyy-MM'));
-            // $('#endDate > input').val(dateFormatter(getDate('MONTH', 0).substring(0, 8), 'yyyy-MM'));
-        } else if ($(this).val() == 'WEEK') {
-            $('#startDate').datepicker({
-                format: 'yyyy-mm-dd',
-                autoclose: true, // 날짜 클릭시 캘린더가 자동으로 닫힘
-                language: 'ko', // locale 설정
-                startView: "days",
-                minViewMode: "days"
-                // locale:'ko'
-            });
-            $('#endDate').datepicker({
-                format: 'yyyy-mm-dd',
-                autoclose: true, // 날짜 클릭시 캘린더가 자동으로 닫힘
-                language: 'ko', // locale 설정
-                startView: "days",
-                minViewMode: "days"
-                // locale:'ko'
-            });
-
-            $('#startDate > input').val(dateFormatter(getDate('WEEK', -28).substring(0, 8), 'yyyy-MM-dd'));
-            $('#endDate > input').val(dateFormatter(getDate('WEEK', 0).substring(0, 8), 'yyyy-MM-dd'));
-
-        } else if ($(this).val() == 'DAY') {
-            // 일별 ------------------------------------------------------------
-            $('#startDate').datepicker({
-                format: 'yyyy-mm-dd',
-                autoclose: true, // 날짜 클릭시 캘린더가 자동으로 닫힘
-                language: 'ko', // locale 설정
-                startView: "days",
-                minViewMode: "days"
-            });
-            $('#endDate').datepicker({
-                format: 'yyyy-mm-dd',
-                autoclose: true, // 날짜 클릭시 캘린더가 자동으로 닫힘
-                language: 'ko', // locale 설정
-                startView: "days",
-                minViewMode: "days"
-
-            });
-
-            $('#startDate > input').val(dateFormatter(getDate('DAY', -7).substring(0, 8), 'yyyy-MM-dd'));
-            $('#endDate > input').val(dateFormatter(getDate('DAY', -1).substring(0, 8), 'yyyy-MM-dd'));
-
+    $(document).on('change', '#dateType', function () {
+        if ($(this).val()) {
+            let _dateType = $('#dateType').val().toLowerCase();
+            if ($(this).val() == 'MONTH') {
+                let _option = {
+                    format: "yyyy-mm", // 데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
+                    autoclose: true, // 날짜 클릭시 캘린더가 자동으로 닫힘
+                    startView: 1, // 달력에 표시되는 형태 (0 : days, 1 : months, 2 : years, 3 : decades)
+                    minViewMode: 1, // 달력에 표시되는 최소 형태 (0 : days, 1 : months, 2 : years, 3 : decades)
+                };
+                let _seperator = 'yyyy-MM';
+                fnDatePicker('#startDate', _option, _dateType, -1, _seperator);
+                fnDatePicker('#endDate', _option, _dateType, 0, _seperator);
+            } else if ($(this).val() == 'WEEK') {
+                let _option = {
+                    format: 'yyyy-mm-dd',
+                    autoclose: true,
+                    startView: 0,
+                    minViewMode: 0,
+                };
+                let _seperator = 'yyyy-MM-dd';
+                fnDatePicker('#startDate', _option, _dateType, -4, _seperator);
+                fnDatePicker('#endDate', _option, _dateType, 0, _seperator);
+            } else if ($(this).val() == 'DAY') {
+                let _option = {
+                    format: 'yyyy-mm-dd',
+                    autoclose: true,
+                    startView: 0,
+                    minViewMode: 0,
+                };
+                let _seperator = 'yyyy-MM-dd';
+                fnDatePicker('#startDate', _option, _dateType, -30, _seperator);
+                fnDatePicker('#endDate', _option, _dateType, 0, _seperator);
+            }
         }
-        // else if ($(this).val() == 'HOUR') {
-        //     // 시간별 -----------------------------------------------------------
-        //     $('#startDate').datetimepicker({
-        //         // locale: 'ko',
-        //         format: 'YYYY-MM-DD HH'
-        //     });
-        //     $('#endDate').datetimepicker({
-        //         // locale: 'ko',
-        //         format: 'YYYY-MM-DD HH'
-        //     });
-        // }
     });
 
 //         // 달력icon클릭시 주별일경우 백그라운드 색상 추가
@@ -1156,9 +1029,4 @@ $(function () {
 //
 //         return returnArray;
 //     }
-
-    /**
-     * 최초 날짜 셋팅
-     * */
-    dateTypeInit();
 });
