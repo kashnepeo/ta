@@ -1,4 +1,4 @@
-$(function ($) {
+$(function () {
         'use strict';
 
         /**
@@ -29,16 +29,16 @@ $(function ($) {
                 _nowDate = new Date();
             }
 
-            if (_type == 'MONTH') {
+            if (_type === 'MONTH') {
                 _minusDate = new Date(_nowDate.getFullYear(), _nowDate.getMonth() + (_addNum), _nowDate.getDate());
-            } else if (_type == 'YEAR') {
+            } else if (_type === 'YEAR') {
                 _minusDate = new Date(_nowDate.getFullYear() + (_addNum), _nowDate.getMonth(), _nowDate.getDate());
             } else {
-                if (_type == 'DAY') {
+                if (_type === 'DAY') {
                     _minusMilliseconds = _addNum * 24 * 60 * 60 * 1000;
-                } else if (_type == 'HOUR') {
+                } else if (_type === 'HOUR') {
                     _minusMilliseconds = _addNum * 60 * 60 * 1000;
-                } else if (_type == 'WEEK') {
+                } else if (_type === 'WEEK') {
                     _minusMilliseconds = _addNum * 7 * 24 * 60 * 60 * 1000;
 //		} else if(_type == 'YEAR') {
 //			_minusMilliseconds = _addNum*365*24*60*60*1000;
@@ -50,15 +50,15 @@ $(function ($) {
 
             _year = _minusDate.getFullYear();
             _month = _minusDate.getMonth() + 1;
-            _month = _month.toString().length == 1 ? '0' + _month : _month;
+            _month = _month.toString().length === 1 ? '0' + _month : _month;
             _day = _minusDate.getDate();
-            _day = _day.toString().length == 1 ? '0' + _day : _day;
+            _day = _day.toString().length === 1 ? '0' + _day : _day;
             _hour = _minusDate.getHours();
-            _hour = _hour.toString().length == 1 ? '0' + _hour : _hour;
+            _hour = _hour.toString().length === 1 ? '0' + _hour : _hour;
             _minute = _minusDate.getMinutes();
-            _minute = _minute.toString().length == 1 ? '0' + _minute : _minute;
+            _minute = _minute.toString().length === 1 ? '0' + _minute : _minute;
             _seconds = _minusDate.getSeconds();
-            _seconds = _seconds.toString().length == 1 ? '0' + _seconds : _seconds;
+            _seconds = _seconds.toString().length === 1 ? '0' + _seconds : _seconds;
             return '' + _year + _month + _day + _hour + _minute + _seconds;
         };
 
@@ -130,7 +130,7 @@ $(function ($) {
         $(document).on('change', '#dateType', function () {
             if ($(this).val()) {
                 let _dateType = $('#dateType').val().toLowerCase();
-                if ($(this).val() == 'MONTH') {
+                if ($(this).val() === 'MONTH') {
                     let _option = {
                         format: "yyyy-mm", // 데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
                         autoclose: true, // 날짜 클릭시 캘린더가 자동으로 닫힘
@@ -140,7 +140,7 @@ $(function ($) {
                     let _seperator = 'yyyy-MM';
                     fnDatePicker('#startDate', _option, _dateType, -1, _seperator);
                     fnDatePicker('#endDate', _option, _dateType, 0, _seperator);
-                } else if ($(this).val() == 'WEEK') {
+                } else if ($(this).val() === 'WEEK') {
                     let _option = {
                         format: 'yyyy-mm-dd',
                         autoclose: true,
@@ -150,7 +150,7 @@ $(function ($) {
                     let _seperator = 'yyyy-MM-dd';
                     fnDatePicker('#startDate', _option, _dateType, -4, _seperator);
                     fnDatePicker('#endDate', _option, _dateType, 0, _seperator);
-                } else if ($(this).val() == 'DAY') {
+                } else if ($(this).val() === 'DAY') {
                     let _option = {
                         format: 'yyyy-mm-dd',
                         autoclose: true,
@@ -168,7 +168,7 @@ $(function ($) {
          * 조회 구분이 주별일 경우 datepicker 클릭 시  background 색상 변경
          */
         $(document).on('click', "#startDate", function () {
-            if ($("#dateType").val() == 'WEEK') {
+            if ($("#dateType").val() === 'WEEK') {
                 $(".datepicker-days .table-condensed tr").hover(function () {
                     $(this).css("background-color", "#808080");
                 }, function () {
@@ -177,7 +177,7 @@ $(function ($) {
             }
         });
         $(document).on('click', "#endDate", function () {
-            if ($("#dateType").val() == 'WEEK') {
+            if ($("#dateType").val() === 'WEEK') {
                 $(".datepicker-days .table-condensed tr").hover(function () {
                     $(this).css("background-color", "#808080");
                 }, function () {
@@ -192,7 +192,7 @@ $(function ($) {
          * endDate :  주(WEEK)의 마지막 날짜 반환
          */
         $(document).on('change', "#startDate > input", function (e) {
-            if ($("#dateType").val() == 'WEEK') {
+            if ($("#dateType").val() === 'WEEK') {
                 let value = $("#startDate > input").val();
                 let firstDate = moment(value, "YYYY-MM-DD").day(0).format("YYYY-MM-DD");
                 console.log($('#startDate').data('datepicker'));
@@ -201,7 +201,7 @@ $(function ($) {
         });
 
         $(document).on('change', "#endDate > input", function (e) {
-            if ($("#dateType").val() == 'WEEK') {
+            if ($("#dateType").val() === 'WEEK') {
                 let value = $("#endDate > input").val();
                 let lastDate = moment(value, "YYYY-MM-DD").day(6).format("YYYY-MM-DD");
                 console.log($('#endDate').data('datepicker'));

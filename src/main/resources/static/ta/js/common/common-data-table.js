@@ -1,4 +1,4 @@
-$(function ($) {
+$(function () {
     'use strict';
     $('#dataTableExample').DataTable({
         "paging": false,    // previous 1 2 3 next 비활성화

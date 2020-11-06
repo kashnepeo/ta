@@ -1,4 +1,4 @@
-$(function ($) {
+$(function () {
     function fnAjax() {
         return $.ajax({
             /** var token = $("meta[name='_csrf']").attr("content");

@@ -17,9 +17,9 @@
                             <li class="breadcrumb-item active" aria-current="page">Data Table</li>
                         </ol>
                     </nav>
-                    <div th:replace="~{fragments/common/search_condition::test}"></div>
-                    <th:block layout:fragment="content"></th:block>
-                    <div th:replace="~{fragments/common/main_footer::main_footer}"></div>
+                    <div th:replace="~{fragments/common/search_condition::codes}"></div>
+                    <div layout:fragment="content"></div>
+                    <div th:replace="~{fragments/common/main_footer::footer}"></div>
                 </div>
             </div>
         </div>
