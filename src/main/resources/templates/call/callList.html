@@ -117,11 +117,12 @@
                 </div>
             </div>
             <div th:replace="~{fragments/common/main_footer::main_footer}"></div>
+            <script th:src="@{/ta/js/call/callList.js}"></script>
         </div>
     </div>
 </div>
 <script>
-jQuery(document).ready(function ($) {
+$(function () {
     $("#nav_menu_area #nav_menu li").on("click", function () {
         $("#nav_menu_area #nav_menu li").removeClass("active");
         $(this).addClass("active");

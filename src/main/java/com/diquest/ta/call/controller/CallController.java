@@ -74,7 +74,7 @@ public class CallController {
             }
         }
 
-        return "call/callList :: #dataTableExample_wrapper";
+        return "call/content :: #dataTableExample_wrapper";
     }
 
     @GetMapping("/viewCallList2.do")

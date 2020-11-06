@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorator="fragments/layout/layout">
+<div class="row" th:fragment="content">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Data Table</h6>
+                <p class="card-description">Read the <a href="https://datatables.net/" target="_blank">
+                    Official DataTables Documentation </a>for a full list of instructions and other options.
+                </p>
+                <div class="table-responsive">
+                    <div id="dataTableExample_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <div class="dataTables_length" id="dataTableExample_length"><label>Show
+                                    <select name="dataTableExample_length" aria-controls="dataTableExample"
+                                            class="custom-select custom-select-sm form-control">
+                                        <option value="10">10</option>
+                                        <option value="30">30</option>
+                                        <option value="50">50</option>
+                                        <option value="-1">All</option>
+                                    </select> entries</label></div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div id="dataTableExample_filter" class="dataTables_filter"><label><input
+                                        type="search" class="form-control" placeholder="Search"
+                                        aria-controls="dataTableExample"></label></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="dataTableExample" class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>번호</th>
+                                        <th>콜 아이디</th>
+                                        <th>상담원 아이디</th>
+                                        <th>상담원 이름</th>
+                                        <th>상담일</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="call, index : ${callList}">
+                                        <td th:text="${index.index+1}"></td>
+                                        <td th:text="${call.rFileNm}"></td>
+                                        <td th:text="${call.rUsrId}"></td>
+                                        <td th:text="${call.rUsrNm}"></td>
+                                        <td th:text="${call.yyyymmdd}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-5">
+                                <div class="dataTables_info" id="dataTableExample_info" role="status"
+                                     aria-live="polite">Showing 1 to 10 of 22 entries
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-7">
+                                <div class="dataTables_paginate paging_simple_numbers"
+                                     id="dataTableExample_paginate">
+                                    <ul class="pagination">
+                                        <li class="paginate_button page-item previous disabled"
+                                            id="dataTableExample_previous"><a href="#"
+                                                                              aria-controls="dataTableExample"
+                                                                              data-dt-idx="0" tabindex="0"
+                                                                              class="page-link">Previous</a>
+                                        </li>
+                                        <li class="paginate_button page-item active"><a href="#"
+                                                                                        aria-controls="dataTableExample"
+                                                                                        data-dt-idx="1"
+                                                                                        tabindex="0"
+                                                                                        class="page-link">1</a>
+                                        </li>
+                                        <li class="paginate_button page-item "><a href="#"
+                                                                                  aria-controls="dataTableExample"
+                                                                                  data-dt-idx="2"
+                                                                                  tabindex="0"
+                                                                                  class="page-link">2</a>
+                                        </li>
+                                        <li class="paginate_button page-item "><a href="#"
+                                                                                  aria-controls="dataTableExample"
+                                                                                  data-dt-idx="3"
+                                                                                  tabindex="0"
+                                                                                  class="page-link">3</a>
+                                        </li>
+                                        <li class="paginate_button page-item next"
+                                            id="dataTableExample_next"><a href="#"
+                                                                          aria-controls="dataTableExample"
+                                                                          data-dt-idx="4" tabindex="0"
+                                                                          class="page-link">Next</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/ta/js/call/callList.js}"></script>
+</div>
+</html>

@@ -19,11 +19,11 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2" id="startDateDiv">
                             <div class="form-group">
                                 <label for="startDate">시작일</label>
                                 <div class="input-group date datepicker" id="startDate">
-                                    <input type="text" class="form-control"><span class="input-group-addon"><svg
+                                    <input type="text" name="startDateText" class="form-control"><span class="input-group-addon"><svg
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4"
@@ -36,11 +36,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2" id="endDateDiv">
                             <div class="form-group">
                                 <label for="endDate">종료일</label>
                                 <div class="input-group date datepicker" id="endDate">
-                                    <input type="text" class="form-control"><span class="input-group-addon"><svg
+                                    <input type="text" name="endDateText" class="form-control"><span class="input-group-addon"><svg
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4"
@@ -99,8 +99,8 @@
                 <div class="form-actions" style="margin-top: 25px;text-align:right">
                     <div class="row">
                         <div class="col-md-12">
-                            <a href="#" class="btn btn-primary active" role="button" id="btnSearch" aria-pressed="true">조회</a>
-                            <a href="#" class="btn btn-secondary active" role="button"  id="btnReset" aria-pressed="true"><i class="fa fa-search"></i>초기화</a>
+                            <a href="#" class="btn btn-secondary active" role="button" id="btnReset" aria-pressed="true">초기화</a>
+                            <a href="#" class="btn btn-primary active" role="button"  id="btnSearch" aria-pressed="true"><i class="fa fa-search"></i>조회</a>
                         </div>
                     </div>
                 </div>

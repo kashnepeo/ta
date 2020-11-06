@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head th:replace="~{fragments/common/main_header::main_header}">
+    <body>
+        <div class="main-wrapper">
+            <nav th:replace="~{fragments/common/main_sidebar::main_sidebar}"></nav>
+            <div class="page-wrapper">
+                <nav th:replace="~{fragments/common/main_navbar::main_navbar}"></nav>
+                <div class="page-content">
+                    <nav class="page-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#">Tables</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Data Table</li>
+                        </ol>
+                    </nav>
+                    <div th:replace="~{fragments/common/search_condition::test}"></div>
+                    <th:block layout:fragment="content"></th:block>
+                    <div th:replace="~{fragments/common/main_footer::main_footer}"></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(function () {
+                $("#nav_menu_area #nav_menu li").on("click", function () {
+                    $("#nav_menu_area #nav_menu li").removeClass("active");
+                    $(this).addClass("active");
+                    location.href = $(this).data('href');
+                });
+            });
+        </script>
+    </body>
+</html>
