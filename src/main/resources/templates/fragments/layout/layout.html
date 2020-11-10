@@ -9,17 +9,16 @@
             <div class="page-wrapper">
                 <nav th:replace="~{fragments/common/main_navbar::main_navbar}"></nav>
                 <div class="page-content">
-                    <nav class="page-breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="#">Tables</a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">Data Table</li>
-                        </ol>
-                    </nav>
+                    <!--                    <nav class="page-breadcrumb">-->
+                    <!--                        <ol class="breadcrumb">-->
+                    <!--                            <li class="breadcrumb-item">-->
+                    <!--                                <a href="/">Main</a>-->
+                    <!--                            </li>-->
+                    <!--                            <li class="breadcrumb-item active" aria-current="page">Data Table</li>-->
+                    <!--                        </ol>-->
+                    <!--                    </nav>-->
                     <div th:replace="~{fragments/common/search_condition::codes}"></div>
                     <div layout:fragment="content"></div>
-                    <div th:replace="~{fragments/common/main_footer::footer}"></div>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-$(function () {
+$(document).ready(function () {
     'use strict';
 
     function inputData() {
@@ -15,8 +15,13 @@ $(function () {
         });
 
     }
-
     inputData();
+
+    $(document).off('click').on("click", ".btn-info", function (e) {
+        console.log('a >> ', e.target);
+        alert("AAAAAAAAAA : " + $(this).attr('data'));
+        // });
+    });
 
     $("#btnSearch").on('click', function () {
         validateSearchCondition();

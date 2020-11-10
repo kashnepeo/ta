@@ -5,11 +5,11 @@ $(function () {
              var header = $("meta[name='_csrf_header']").attr("content"); */
             url: "/common/retrieveCommonCodeList.do",
             type: "POST",
-            async: true,
-            cache: false
-            /** , before: function (xhr) {
-                xhr.setRequestHeader(header, token);
-        }*/
+            async: false,
+            cache: false,
+            success: function (fragment) {
+                $("#search_condition").replaceWith(fragment);
+            }
         });
     }
 
@@ -21,8 +21,8 @@ $(function () {
         }
     }
 
-    async function setCommonCodeList() {
-        $("#search_condition").replaceWith(await fnAjax());
+    function setCommonCodeList() {
+        fnAjax();
 
         let endDate = new Date();
         let startDate = new Date(Date.parse(endDate) - (30 * 24 * 60 * 60 * 1000));
@@ -41,5 +41,4 @@ $(function () {
 
     /** setting code */
     setCommonCodeList();
-
 });
