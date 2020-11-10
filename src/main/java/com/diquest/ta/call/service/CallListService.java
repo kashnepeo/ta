@@ -31,23 +31,27 @@ public class CallListService {
     private CallRepository callRepository;
 
     public Page<CallEntity> getCallLists(PagingRequest pagingRequest) {
-        //ObjectMapper objectMapper = new ObjectMapper();
 
-        //try {
-           /* List<CallEntity> callLists = objectMapper.readValue(getClass().getClassLoader()
-                            .getResourceAsStream("callList.json"),
-                    new TypeReference<List<CallEntity>>() {
-                    });*/
+        String dateType = pagingRequest.getExtrasearch().getDatetype();
+        String starDate  = (pagingRequest.getExtrasearch().getStartDate()).replace("-","");
+        String endDate = (pagingRequest.getExtrasearch().getEndDate()).replace("-","");
+        String centerType = pagingRequest.getExtrasearch().getCenterType();
+        String timeType = pagingRequest.getExtrasearch().getTimeType();
+        String durationType = pagingRequest.getExtrasearch().getDurationType();
+        String searchword = pagingRequest.getExtrasearch().getSearchword();
 
-            List<CallEntity> callLists2 = callRepository.findAll();
+        if(dateType.equals("MONTH")){
+            starDate = starDate + "01";
+            endDate = endDate + "31";
+        }
 
-            return getPage(callLists2, pagingRequest);
+        System.out.println("==:"+dateType);
+        //List<CallEntity> callLists2 = callRepository.findAll();
+        List<CallEntity> callLists = callRepository.
+                findByYyyymmddIsGreaterThanEqualAndYyyymmddIsLessThanEqual(starDate, endDate);
 
-//       } catch (IOException e) {
-//            log.error(e.getMessage(), e);
-//        }
-//
-//        return new Page<>();
+        return getPage(callLists, pagingRequest);
+
     }
 
     private Page<CallEntity> getPage(List<CallEntity> callLists, PagingRequest pagingRequest) {

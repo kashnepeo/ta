@@ -12,4 +12,6 @@ public interface CallRepository extends JpaRepository<CallEntity, String> {
     List<CallEntity> findByYyyymmdd(String yyyymmdd, Pageable pageable);
     Page<CallEntity>findByYyyymmddContaining(String yyyymmdd, Pageable pageable);
 
+    List<CallEntity> findByYyyymmddIsGreaterThanEqualAndYyyymmddIsLessThanEqual(String startDate,String endDate);
+
 }
