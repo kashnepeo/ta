@@ -1,20 +1,20 @@
+import {fnAjaxFragment} from "../common/common.js";
+
+
+function inputData() {
+    var page = 1;
+    var size = 10;
+    var sort = 'rFileNm.desc';
+    let data = {
+        page: 1,
+        size: 10
+    }
+    fnAjaxFragment('#dataTableExample_wrapper', data, '/call/retrieveCallList.do');
+
+}
+
 $(document).ready(function () {
     'use strict';
-
-    function inputData() {
-        var page = 1;
-        var size = 10;
-        var sort = 'rFileNm.desc';
-        $.ajax({
-            url: "/call/retrieveCallList.do",
-            // data: {page: page, size: size, sort: sort},
-            type: "POST",
-            cache: false
-        }).done(function (fragment) {
-            $("#dataTableExample_wrapper").replaceWith(fragment);
-        });
-
-    }
     inputData();
 
     $(document).off('click').on("click", ".btn-info", function (e) {
@@ -23,7 +23,7 @@ $(document).ready(function () {
         // });
     });
 
-    $("#btnSearch").on('click', function () {
-        validateSearchCondition();
-    });
+    // $("#btnSearch").on('click', function () {
+    //     validateSearchCondition();
+    // });
 });
