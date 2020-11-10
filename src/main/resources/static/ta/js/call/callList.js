@@ -143,12 +143,12 @@ $(document).ready(function () {
     search();
     //inputData();
 
-    $("#btnReset").on('click', function () {
-        reset();
+    $("#btnSearch").off('click').on("click", function (e) {
+        search();
     });
 
-    $(document).off('click').on("click", "#btnSearch", function (e) {
-        search();
+    $("#btnReset").off('click').on("click", function (e) {
+        reset();
     });
 
     // $(document).off('click').on("click", ".btn-info", function (e) {
