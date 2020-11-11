@@ -55,8 +55,8 @@ function search(){
     var searchword = $("#searchword").val();
 
     //console.log("dateType: "+ dateType);
-    startDate = "2020-05-23";
-    endDate = "2020-05-24";
+    //startDate = "2020-05-23";
+    //endDate = "2020-05-24";
 
     var extrasearch = {
         "datetype" : dateType,
