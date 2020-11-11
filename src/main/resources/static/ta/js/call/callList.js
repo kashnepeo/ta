@@ -115,6 +115,7 @@ function search(){
     $("#dataTableCallList tbody").off('click').on( 'click', '#click', function (e) {
             var data = table.row( $(this).parents('tr') ).data();
             console.log(data);
+            alert(data.rfileNm);
     });
 
 
