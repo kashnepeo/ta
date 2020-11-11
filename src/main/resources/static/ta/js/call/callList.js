@@ -55,8 +55,8 @@ function search(){
     var searchword = $("#searchword").val();
 
     //console.log("dateType: "+ dateType);
-    //startDate = "2020-05-23";
-    //endDate = "2020-05-24";
+    startDate = "2020-05-23";
+    endDate = "2020-05-24";
 
     var extrasearch = {
         "datetype" : dateType,
@@ -70,7 +70,7 @@ function search(){
 
     var dataTable = $('#dataTableCallList');
 
-    dataTable.DataTable({
+    var table = dataTable.DataTable({
         destroy: true,
         processing: true,
         serverSide: true,
@@ -100,31 +100,21 @@ function search(){
             {data: "rusrId", title: "상담원 아이디", width: "20%"},
             {data: "rusrNm", title: "상담원 이름", width: "20%"},
             {data: "yyyymmdd", title: "상담일", width: "20%"},
-            {data: null,
-                title: "이벤트 발생",
-                width: "8%",
-                orderable: false,
-                render: function (item, type, row) {
-                    return '<button onclick="alert(' + item.rusrId + ')" type="button" class="btn btn-info" >상세보기</button>'
-                }
-            },
-            // {"data": null,"width": "20%"},
+            {data: null, title: "이벤트 발생", width: "8%",},
         ],
-        // columnDefs: [ {
-        //     targets: -1,
-        //     searchable: false,
-        //     orderable: false,
-        //     // title: "Action2",
-        //     data: null,
-        //     defaultContent: "<button class=\"btn btn-secondary active\" role=\"button\" id=\"click\" aria-pressed=\"true\">Click!</button>"
-        // } ]
+        columnDefs: [{
+            targets: -1,
+            searchable: false,
+            orderable: false,
+            data: null,
+            defaultContent: "<button class=\"btn btn-info\" id=\"click\" type=\"button\">상세보기</button>"
+        }]
     });
 
-    // $('#dataTableCallList tbody').on( 'click', '#click', function () {
-    //     var data = table.row( $(this).parents('tr') ).data();
-    //     console.log(data);
-    //     alert(data.rfileNm);
-    // } );
+    $('#dataTableCallList tbody').on( 'click', '#click', function () {
+        var data = table.row( $(this).parents('tr') ).data();
+        alert(data.rfileNm);
+    } );
 
     dataTable.each(function() {
         var datatable = $(this);
