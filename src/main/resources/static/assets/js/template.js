@@ -127,17 +127,17 @@
 
 
     //  open sidebar-folded when hover
-    $(".sidebar .sidebar-body").hover(
-    function () {
-      if (body.hasClass('sidebar-folded')){
-        body.addClass("open-sidebar-folded");
-      }
-    },
-    function () {
-      if (body.hasClass('sidebar-folded')){
-        body.removeClass("open-sidebar-folded");
-      }
-    });
+    // $(".sidebar .sidebar-body").hover(
+    // function () {
+    //   if (body.hasClass('sidebar-folded')){
+    //     body.addClass("open-sidebar-folded");
+    //   }
+    // },
+    // function () {
+    //   if (body.hasClass('sidebar-folded')){
+    //     body.removeClass("open-sidebar-folded");
+    //   }
+    // });
 
   // close sidebar when click outside on mobile/table    
     $(document).on('click touchstart', function(e){

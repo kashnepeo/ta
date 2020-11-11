@@ -4,11 +4,8 @@
     <head th:replace="~{fragments/common/main_header::main_header}">
     <body>
         <div class="main-wrapper">
-            <nav th:replace="~{fragments/common/main_sidebar::main_sidebar}"></nav>
             <div class="page-wrapper">
-                <nav th:replace="~{fragments/common/main_navbar::main_navbar}"></nav>
                 <div class="page-content">
-                    <div th:replace="~{fragments/common/search_condition::codes}"></div>
                     <div layout:fragment="content"></div>
                 </div>
                 <footer th:replace="~{fragments/common/main_footer::main_footer}"></footer>
@@ -16,11 +13,7 @@
         </div>
         <script>
             $(function () {
-                $("#nav_menu_area #nav_menu li").on("click", function () {
-                    $("#nav_menu_area #nav_menu li").removeClass("active");
-                    $(this).addClass("active");
-                    location.href = $(this).data('href');
-                });
+                $('body').addClass('sidebar-folded');
             });
         </script>
     </body>

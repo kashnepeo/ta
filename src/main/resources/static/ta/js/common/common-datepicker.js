@@ -1,5 +1,6 @@
-$(document).ready(function () {
-        'use strict';
+$(function () {
+        /** 모든 이벤트 해제 (중복 이벤트 방지) **/
+        $(document).off();
 
         /**
          * 날짜 가져오기
@@ -168,12 +169,17 @@ $(document).ready(function () {
          * 조회 구분이 주별일 경우 datepicker 클릭 시  background 색상 변경
          */
         $(document).on('click', "#startDate", function () {
+            console.log('1');
             if ($("#dateType").val() === 'WEEK') {
-                $(".datepicker-days .table-condensed tr").hover(function () {
-                    $(this).css("background-color", "#808080");
-                }, function () {
-                    $(this).css("background-color", "#fff");
-                });
+                console.log('2');
+                $(".datepicker-days  .table-condensed  tr").hover(function () {
+                        console.log('3');
+                        $(this).css("background-color", "#808080");
+                    }
+                    , function () {
+                        console.log('4');
+                        $(this).css("background-color", "#fff");
+                    });
             }
         });
         $(document).on('click', "#endDate", function () {
@@ -209,118 +215,118 @@ $(document).ready(function () {
             }
         });
 
-    function validateSearchCondition() {
-/**
-        var callTimeExp = /^([0-9]{2}):([0-9]{2}):([0-9]{2})$/; // 통화시간
-        if($('#callTime').length > 0) {
+        function validateSearchCondition() {
+            /**
+             var callTimeExp = /^([0-9]{2}):([0-9]{2}):([0-9]{2})$/; // 통화시간
+             if($('#callTime').length > 0) {
             if(!callTimeExp.test($("#callTime").val())) {
                 alert("입력한 통화시간이 올바르지 않습니다.");
                 return true;
             }
         }
-**/
-        let rtn = false,
-            dateType,
-            relationDateType,
-            startDate,
-            endDate,
-            validateDateFormat,
-            validateMaxNum,
-            alertMessage,
-            addDate = '';
+             **/
+            let rtn = false,
+                dateType,
+                relationDateType,
+                startDate,
+                endDate,
+                validateDateFormat,
+                validateMaxNum,
+                alertMessage,
+                addDate = '';
 
-        // 날짜 validater
-        if($('#dateType').length > 0) {
-            // dateType = $('#dateType').val();
-            startDate = $('#startDate > input').val().replace(/[-| ]/img,'');
-            endDate = $('#endDate > input').val().replace(/[-| ]/img,'');
+            // 날짜 validater
+            if ($('#dateType').length > 0) {
+                // dateType = $('#dateType').val();
+                startDate = $('#startDate > input').val().replace(/[-| ]/img, '');
+                endDate = $('#endDate > input').val().replace(/[-| ]/img, '');
 
-            if(Number(startDate) > Number(endDate)) {
-                alert("시작날짜가 종료날짜보다 큽니다.");
-                return true;
+                if (Number(startDate) > Number(endDate)) {
+                    alert("시작날짜가 종료날짜보다 큽니다.");
+                    return true;
+                }
+
+                // var monthExp = /^(20)([0-9]{2})-([0-9]{2})$/; // 월별
+                // var dayExp = /^(20)([0-9]{2})-([0-9]{2})-([0-9]{2})$/; // 일별
+                // var hourExp = /^(20)([0-9]{2})-([0-9]{2})-([0-9]{2}) ([0-9]{2})$/; // 시별
+                //
+                // if(dateType == 'DAY') {
+                //     if(!dayExp.test($('#datetimepicker1 > input').val())) {
+                //         alert("입력한 날짜가 올바르지 않습니다.");
+                //         return true;
+                //     }
+                //     if(!dayExp.test($('#datetimepicker2 > input').val())) {
+                //         alert("입력한 날짜가 올바르지 않습니다.");
+                //         return true;
+                //     }
+                //     validateDateFormat = 'yyyy-MM-dd';
+                //     validateMaxNum = Common.Constants.valiateMaxDay;
+                //     alertMessage = '일별 검색 최대 검색 기간은 '+(Common.Constants.valiateMaxDay+1)+'일 입니다.\n확인버튼을 누르시면 검색종료일이 최대값으로 변경 후 검색 됩니다.\n계속 진행 하시겠습니까?';
+                // } else if(dateType == 'HOUR') {
+                //     if(!hourExp.test($('#datetimepicker1 > input').val())) {
+                //         alert("입력한 날짜가 올바르지 않습니다.");
+                //         return true;
+                //     }
+                //     if(!hourExp.test($('#datetimepicker2 > input').val())) {
+                //         alert("입력한 날짜가 올바르지 않습니다.");
+                //         return true;
+                //     }
+                //     validateDateFormat = 'yyyy-MM-dd hh';
+                //     validateMaxNum = Common.Constants.valiateMaxHour;
+                //     alertMessage = '시간별 검색 최대 검색 기간은 '+Common.Constants.valiateMaxHour+'시간 입니다.\n확인버튼을 누르시면 검색종료일이 최대값으로 변경 후 검색 됩니다.\n계속 진행 하시겠습니까?';
+                // } else if(dateType == 'MON') {
+                //     if(!monthExp.test($('#datetimepicker1 > input').val())) {
+                //         alert("입력한 날짜가 올바르지 않습니다.");
+                //         return true;
+                //     }
+                //     if(!monthExp.test($('#datetimepicker2 > input').val())) {
+                //         alert("입력한 날짜가 올바르지 않습니다.");
+                //         return true;
+                //     }
+                //     validateDateFormat = 'yyyy-MM';
+                //     validateMaxNum = Common.Constants.valiateMaxMonth;
+                //     alertMessage = '월별 검색시 최대 검색 기간은 '+Common.Constants.valiateMaxMonth+'개월 입니다.\n확인버튼을 누르시면 검색종료일이 최대값으로 변경 후 검색 됩니다.\n계속 진행 하시겠습니까?';
+                //     addDate = '01';
+                // } else if(dateType == 'WEEK') {
+                //     if(!dayExp.test($('#datetimepicker1 > input').val())) {
+                //         alert("입력한 날짜가 올바르지 않습니다.");
+                //         return true;
+                //     }
+                //     if(!dayExp.test($('#datetimepicker2 > input').val())) {
+                //         alert("입력한 날짜가 올바르지 않습니다.");
+                //         return true;
+                //     }
+                //     validateDateFormat = 'yyyy-MM-dd';
+                //     validateMaxNum = Common.Constants.valiateMaxWeek;
+                //     alertMessage = '주별 검색시 최대 검색 기간은 '+Common.Constants.valiateMaxWeek+'주 입니다.\n확인버튼을 누르시면 검색종료일이 최대값으로 변경 후 검색 됩니다.\n계속 진행 하시겠습니까?';
+                //     dateType = 'DAYOFWEEK';
+                // } else { // 기본 day
+                //     if(!dayExp.test($('#datetimepicker1 > input').val())) {
+                //         alert("입력한 날짜가 올바르지 않습니다.");
+                //         return true;
+                //     }
+                //     if(!dayExp.test($('#datetimepicker2 > input').val())) {
+                //         alert("입력한 날짜가 올바르지 않습니다.");
+                //         return true;
+                //     }
+                //     validateDateFormat = 'yyyy-MM-dd';
+                //     validateMaxNum = Common.Constants.valiateMaxDay;
+                //     alertMessage = '일별 검색 최대 검색 기간은 '+Common.Constants.valiateMaxDay+'일 입니다.\n확인버튼을 누르시면 검색종료일이 최대값으로 변경 후 검색 됩니다.\n계속 진행 하시겠습니까?';
+                // }
+
+                // if(!Common.Date.checkMaxDate(dateType, datetimepicker1, datetimepicker2, validateMaxNum)) {
+                //     if( confirm(alertMessage) ) {
+                //         // datetimepicker1 에 최대값 적용
+                //         $('#datetimepicker1').data("DateTimePicker").date($('#datetimepicker1 > input').val());
+                //         $('#datetimepicker2 > input').val(Common.Format.date(Common.Date.getDate(dateType, validateMaxNum, datetimepicker1) + addDate, validateDateFormat));
+                //         $('#datetimepicker2').data("DateTimePicker").date($('#datetimepicker2 > input').val());
+                //         rtn = false;
+                //     } else {
+                //         rtn = true;
+                //     }
+                // }
             }
-
-            // var monthExp = /^(20)([0-9]{2})-([0-9]{2})$/; // 월별
-            // var dayExp = /^(20)([0-9]{2})-([0-9]{2})-([0-9]{2})$/; // 일별
-            // var hourExp = /^(20)([0-9]{2})-([0-9]{2})-([0-9]{2}) ([0-9]{2})$/; // 시별
-            //
-            // if(dateType == 'DAY') {
-            //     if(!dayExp.test($('#datetimepicker1 > input').val())) {
-            //         alert("입력한 날짜가 올바르지 않습니다.");
-            //         return true;
-            //     }
-            //     if(!dayExp.test($('#datetimepicker2 > input').val())) {
-            //         alert("입력한 날짜가 올바르지 않습니다.");
-            //         return true;
-            //     }
-            //     validateDateFormat = 'yyyy-MM-dd';
-            //     validateMaxNum = Common.Constants.valiateMaxDay;
-            //     alertMessage = '일별 검색 최대 검색 기간은 '+(Common.Constants.valiateMaxDay+1)+'일 입니다.\n확인버튼을 누르시면 검색종료일이 최대값으로 변경 후 검색 됩니다.\n계속 진행 하시겠습니까?';
-            // } else if(dateType == 'HOUR') {
-            //     if(!hourExp.test($('#datetimepicker1 > input').val())) {
-            //         alert("입력한 날짜가 올바르지 않습니다.");
-            //         return true;
-            //     }
-            //     if(!hourExp.test($('#datetimepicker2 > input').val())) {
-            //         alert("입력한 날짜가 올바르지 않습니다.");
-            //         return true;
-            //     }
-            //     validateDateFormat = 'yyyy-MM-dd hh';
-            //     validateMaxNum = Common.Constants.valiateMaxHour;
-            //     alertMessage = '시간별 검색 최대 검색 기간은 '+Common.Constants.valiateMaxHour+'시간 입니다.\n확인버튼을 누르시면 검색종료일이 최대값으로 변경 후 검색 됩니다.\n계속 진행 하시겠습니까?';
-            // } else if(dateType == 'MON') {
-            //     if(!monthExp.test($('#datetimepicker1 > input').val())) {
-            //         alert("입력한 날짜가 올바르지 않습니다.");
-            //         return true;
-            //     }
-            //     if(!monthExp.test($('#datetimepicker2 > input').val())) {
-            //         alert("입력한 날짜가 올바르지 않습니다.");
-            //         return true;
-            //     }
-            //     validateDateFormat = 'yyyy-MM';
-            //     validateMaxNum = Common.Constants.valiateMaxMonth;
-            //     alertMessage = '월별 검색시 최대 검색 기간은 '+Common.Constants.valiateMaxMonth+'개월 입니다.\n확인버튼을 누르시면 검색종료일이 최대값으로 변경 후 검색 됩니다.\n계속 진행 하시겠습니까?';
-            //     addDate = '01';
-            // } else if(dateType == 'WEEK') {
-            //     if(!dayExp.test($('#datetimepicker1 > input').val())) {
-            //         alert("입력한 날짜가 올바르지 않습니다.");
-            //         return true;
-            //     }
-            //     if(!dayExp.test($('#datetimepicker2 > input').val())) {
-            //         alert("입력한 날짜가 올바르지 않습니다.");
-            //         return true;
-            //     }
-            //     validateDateFormat = 'yyyy-MM-dd';
-            //     validateMaxNum = Common.Constants.valiateMaxWeek;
-            //     alertMessage = '주별 검색시 최대 검색 기간은 '+Common.Constants.valiateMaxWeek+'주 입니다.\n확인버튼을 누르시면 검색종료일이 최대값으로 변경 후 검색 됩니다.\n계속 진행 하시겠습니까?';
-            //     dateType = 'DAYOFWEEK';
-            // } else { // 기본 day
-            //     if(!dayExp.test($('#datetimepicker1 > input').val())) {
-            //         alert("입력한 날짜가 올바르지 않습니다.");
-            //         return true;
-            //     }
-            //     if(!dayExp.test($('#datetimepicker2 > input').val())) {
-            //         alert("입력한 날짜가 올바르지 않습니다.");
-            //         return true;
-            //     }
-            //     validateDateFormat = 'yyyy-MM-dd';
-            //     validateMaxNum = Common.Constants.valiateMaxDay;
-            //     alertMessage = '일별 검색 최대 검색 기간은 '+Common.Constants.valiateMaxDay+'일 입니다.\n확인버튼을 누르시면 검색종료일이 최대값으로 변경 후 검색 됩니다.\n계속 진행 하시겠습니까?';
-            // }
-
-            // if(!Common.Date.checkMaxDate(dateType, datetimepicker1, datetimepicker2, validateMaxNum)) {
-            //     if( confirm(alertMessage) ) {
-            //         // datetimepicker1 에 최대값 적용
-            //         $('#datetimepicker1').data("DateTimePicker").date($('#datetimepicker1 > input').val());
-            //         $('#datetimepicker2 > input').val(Common.Format.date(Common.Date.getDate(dateType, validateMaxNum, datetimepicker1) + addDate, validateDateFormat));
-            //         $('#datetimepicker2').data("DateTimePicker").date($('#datetimepicker2 > input').val());
-            //         rtn = false;
-            //     } else {
-            //         rtn = true;
-            //     }
-            // }
+            return rtn;
         }
-        return rtn;
-    }
     }
 );
