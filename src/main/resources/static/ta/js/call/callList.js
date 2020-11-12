@@ -84,7 +84,7 @@ function search(){
             search: ""
         },
         ajax: {
-            url: "/callListRest",
+            url: "/callRest/retrieveCallList.do",
             type: "POST",
             dataType: "json",
             contentType: "application/json",
