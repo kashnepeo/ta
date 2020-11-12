@@ -41,80 +41,80 @@ public class CallController {
         return "call/callList";
     }
 
-    @PostMapping("/retrieveCallList.do")
-    public String retrieveCallList(Model model, Pageable pageable) {
-        LOG.debug("method : retrieveCallList");
-        LOG.debug("model : " + model);
-        LOG.debug("pageable : " + pageable);
-
-        boolean status = true;
-        StopWatch stopWatch = new StopWatch();
-
-        String resultCode = CommonConstants.RESULT_CODE0.getValue();
-        String resultMessage = CommonConstants.RESULT_MESSAGE0.getValue();
-
-        if (status) {
-            try {
-                stopWatch.start();
-                List<CallEntity> callList = callRepository.findByYyyymmdd("20200520", pageable);
-
-                model.addAttribute("callList", callList);
-                model.addAttribute(CommonConstants.RESULT_CODE_NAME, resultCode);
-                model.addAttribute(CommonConstants.RESULT_MESSAGE_NAME, resultMessage);
-            } catch (Exception e) {
-                resultCode = CommonConstants.RESULT_CODE1.getValue();
-                resultMessage = this.messageSource.getMessage("fail.common.msg", null, Locale.KOREA);
-
-                LOG.error(AppUtil.setErrLogFormat("retrieveCallList", resultCode, resultMessage, e.getMessage()));
-                LOG.error(e.getMessage());
-                status = false;
-            } finally {
-                stopWatch.stop();
-                LOG.info(AppUtil.setInfoLogFormat("retrieveCallList", resultCode, resultMessage, stopWatch.getTotalTimeMillis()));
-            }
-        }
-
-        return "call/callList :: #dataTableExample_wrapper";
-    }
-
-    @GetMapping("/viewCallList2.do")
-    public String viewCallList2(Model model, Pageable pageable) {
-        return "call/callList2";
-    }
-
-
-    @PostMapping("/retrieveCallList2.do")
-    public String retrieveCallList2(Model model,
-                                    @PageableDefault(size = 10) Pageable pageable,
-                                    @RequestParam(required = false, defaultValue = "") String searchText) {
-
-        Page<CallEntity> callList = callRepository.findByYyyymmddContaining(searchText, pageable);
-
-        int viewPageSize = 10;
-        long totalElementsNumber = callList.getTotalElements();
-        int totalPagesNumber = callList.getTotalPages();
-        int currentPageNumber = callList.getPageable().getPageNumber();
-        int startPage = 1 * viewPageSize * (currentPageNumber / 10);
-        int endPage = startPage + viewPageSize - 1;
-        int size = callList.getSize();
-
-        model.addAttribute("viewPageSize", viewPageSize);
-        model.addAttribute("totalElementsNumber", totalElementsNumber);
-        model.addAttribute("totalPagesNumber", totalPagesNumber);
-        model.addAttribute("currentPageNumber", currentPageNumber);
-        model.addAttribute("startPage", startPage);
-        model.addAttribute("endPage", endPage);
-        model.addAttribute("searchText", searchText);
-        model.addAttribute("size", size);
-        model.addAttribute("callList", callList);
-
-        return "call/callList2 :: #dataTableExample_wrapper";
-    }
-
-    @GetMapping("/viewCallList3.do")
-    public String viewCallList3() {
-        return "call/callList3";
-    }
+//    @PostMapping("/retrieveCallList.do")
+//    public String retrieveCallList(Model model, Pageable pageable) {
+//        LOG.debug("method : retrieveCallList");
+//        LOG.debug("model : " + model);
+//        LOG.debug("pageable : " + pageable);
+//
+//        boolean status = true;
+//        StopWatch stopWatch = new StopWatch();
+//
+//        String resultCode = CommonConstants.RESULT_CODE0.getValue();
+//        String resultMessage = CommonConstants.RESULT_MESSAGE0.getValue();
+//
+//        if (status) {
+//            try {
+//                stopWatch.start();
+//                List<CallEntity> callList = callRepository.findByYyyymmdd("20200520", pageable);
+//
+//                model.addAttribute("callList", callList);
+//                model.addAttribute(CommonConstants.RESULT_CODE_NAME, resultCode);
+//                model.addAttribute(CommonConstants.RESULT_MESSAGE_NAME, resultMessage);
+//            } catch (Exception e) {
+//                resultCode = CommonConstants.RESULT_CODE1.getValue();
+//                resultMessage = this.messageSource.getMessage("fail.common.msg", null, Locale.KOREA);
+//
+//                LOG.error(AppUtil.setErrLogFormat("retrieveCallList", resultCode, resultMessage, e.getMessage()));
+//                LOG.error(e.getMessage());
+//                status = false;
+//            } finally {
+//                stopWatch.stop();
+//                LOG.info(AppUtil.setInfoLogFormat("retrieveCallList", resultCode, resultMessage, stopWatch.getTotalTimeMillis()));
+//            }
+//        }
+//
+//        return "call/callList :: #dataTableExample_wrapper";
+//    }
+//
+//    @GetMapping("/viewCallList2.do")
+//    public String viewCallList2(Model model, Pageable pageable) {
+//        return "call/callList2";
+//    }
+//
+//
+//    @PostMapping("/retrieveCallList2.do")
+//    public String retrieveCallList2(Model model,
+//                                    @PageableDefault(size = 10) Pageable pageable,
+//                                    @RequestParam(required = false, defaultValue = "") String searchText) {
+//
+//        Page<CallEntity> callList = callRepository.findByYyyymmddContaining(searchText, pageable);
+//
+//        int viewPageSize = 10;
+//        long totalElementsNumber = callList.getTotalElements();
+//        int totalPagesNumber = callList.getTotalPages();
+//        int currentPageNumber = callList.getPageable().getPageNumber();
+//        int startPage = 1 * viewPageSize * (currentPageNumber / 10);
+//        int endPage = startPage + viewPageSize - 1;
+//        int size = callList.getSize();
+//
+//        model.addAttribute("viewPageSize", viewPageSize);
+//        model.addAttribute("totalElementsNumber", totalElementsNumber);
+//        model.addAttribute("totalPagesNumber", totalPagesNumber);
+//        model.addAttribute("currentPageNumber", currentPageNumber);
+//        model.addAttribute("startPage", startPage);
+//        model.addAttribute("endPage", endPage);
+//        model.addAttribute("searchText", searchText);
+//        model.addAttribute("size", size);
+//        model.addAttribute("callList", callList);
+//
+//        return "call/callList2 :: #dataTableExample_wrapper";
+//    }
+//
+//    @GetMapping("/viewCallList3.do")
+//    public String viewCallList3() {
+//        return "call/callList3";
+//    }
 
 
 }
