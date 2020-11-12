@@ -132,6 +132,7 @@ function search(){
     table.on( 'draw.dt', function () {
         var PageInfo = $('#dataTableCallList').DataTable().page.info();
         table.column(0, { page: 'current' }).nodes().each( function (cell, i) {
+            $("#totalRecord").text(PageInfo.recordsTotal);
             cell.innerHTML = i + 1 + PageInfo.start;
         } );
     } );
