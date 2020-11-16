@@ -138,6 +138,7 @@ function search(){
     } );
 
     //$('#dataTableCallList tbody').on( 'click', '#click', function () {
+    // $("#dataTableCallList tbody").off('click').on( 'click', '#click', function (e) {
     $("#dataTableCallList tbody").off('click').on( 'click', '#click', function (e) {
         var data = table.row( $(this).parents('tr') ).data();
         window.open("/chat/viewChatList.do?rfileNm="+data.rfileNm, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=500,width=1400,height=1400");

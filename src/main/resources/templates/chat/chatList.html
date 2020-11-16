@@ -158,12 +158,486 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8 chat-content">
+                    <div class="col-lg-8 chat-aside border-lg-right">
+                        <div class="aside-content">
+                            <div class="aside-body">
+                                <ul class="nav nav-tabs mt-3" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="chats-tab" data-toggle="tab" href="#chats"
+                                           role="tab"
+                                           aria-controls="chats" aria-selected="true">
+                                            <p class="d-none d-sm-block">Chats</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="calls-tab" data-toggle="tab" href="#calls" role="tab"
+                                           aria-controls="calls" aria-selected="false">
+                                            <p class="d-none d-sm-block">Calls</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contacts-tab" data-toggle="tab" href="#contacts"
+                                           role="tab" aria-controls="contacts" aria-selected="false">
+                                            <div class="d-flex flex-row flex-lg-column flex-xl-row align-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                     class="feather feather-users icon-sm mr-sm-2 mr-lg-0 mr-xl-2 mb-md-1 mb-xl-0">
+                                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="9" cy="7" r="4"></circle>
+                                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                                </svg>
+                                                <p class="d-none d-sm-block">Contacts</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content mt-3 ps ps--active-y">
+                                    <div class="tab-pane fade active show" id="chats" role="tabpanel"
+                                         aria-labelledby="chats-tab">
+                                        <div class="table-responsive pt-3">
+                                            <div class="tab_cont cont_tab_01">
+                                                <div class="col-sm-6 col-md-4 col-lg-3"><p class="text-muted mb-1"><i class="mdi mdi-whatsapp">내선 번호 정보</i></p></div>
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                    <tr>
+                                                        <th scope="row">직원번호</th>
+                                                        <td th:text="${counselor.rUsrId}"></td>
+                                                        <th>상담사</th>
+                                                        <td th:text="${counselor.rUsrNm}"></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div class="col-sm-6 col-md-4 col-lg-3"><p class="text-muted mb-1"><i class="mdi mdi-whatsapp">고객 정보</i></p></div>
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                    <tr>
+                                                        <th scope="row">가입번호</th>
+                                                        <td>010-1234-0001</td>
+                                                        <th>고객명</th>
+                                                        <td>신다현</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">가입 상품</th>
+                                                        <td colspan="3">5G 서비스</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">위치</th>
+                                                        <td colspan="3">경기도</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">가족관계</th>
+                                                        <td colspan="3">아내</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="calls" role="tabpanel" aria-labelledby="calls-tab">
+                                        <p class="text-muted mb-1">Recent calls</p>
+                                        <ul class="list-unstyled chat-list px-1">
+                                            <li class="chat-item pr-1">
+                                                <a href="javascript:;" class="d-flex align-items-center">
+                                                    <figure class="mb-0 mr-2">
+                                                        <img src="https://via.placeholder.com/37x37"
+                                                             class="img-xs rounded-circle" alt="user">
+                                                        <div class="status online"></div>
+                                                    </figure>
+                                                    <div class="d-flex align-items-center justify-content-between flex-grow border-bottom">
+                                                        <div>
+                                                            <p class="text-body">Jensen Combs</p>
+                                                            <div class="d-flex align-items-center">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                     height="24" viewBox="0 0 24 24" fill="none"
+                                                                     stroke="currentColor" stroke-width="2"
+                                                                     stroke-linecap="round" stroke-linejoin="round"
+                                                                     class="feather feather-arrow-up-right icon-sm text-success mr-1">
+                                                                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                                                                    <polyline points="7 7 17 7 17 17"></polyline>
+                                                                </svg>
+                                                                <p class="text-muted tx-13">Today, 03:11 AM</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex flex-column align-items-end">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                 height="24" viewBox="0 0 24 24" fill="none"
+                                                                 stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 class="feather feather-phone-call text-success icon-md">
+                                                                <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="chat-item pr-1">
+                                                <a href="javascript:;" class="d-flex align-items-center">
+                                                    <figure class="mb-0 mr-2">
+                                                        <img src="https://via.placeholder.com/37x37"
+                                                             class="img-xs rounded-circle" alt="user">
+                                                        <div class="status offline"></div>
+                                                    </figure>
+                                                    <div class="d-flex align-items-center justify-content-between flex-grow border-bottom">
+                                                        <div>
+                                                            <p class="text-body">Leonardo Payne</p>
+                                                            <div class="d-flex align-items-center">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                     height="24" viewBox="0 0 24 24" fill="none"
+                                                                     stroke="currentColor" stroke-width="2"
+                                                                     stroke-linecap="round" stroke-linejoin="round"
+                                                                     class="feather feather-arrow-down-left icon-sm text-success mr-1">
+                                                                    <line x1="17" y1="7" x2="7" y2="17"></line>
+                                                                    <polyline points="17 17 7 17 7 7"></polyline>
+                                                                </svg>
+                                                                <p class="text-muted tx-13">Today, 11:41 AM</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex flex-column align-items-end">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                 height="24" viewBox="0 0 24 24" fill="none"
+                                                                 stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 class="feather feather-video text-success icon-md">
+                                                                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                                                <rect x="1" y="5" width="15" height="14" rx="2"
+                                                                      ry="2"></rect>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="chat-item pr-1">
+                                                <a href="javascript:;" class="d-flex align-items-center">
+                                                    <figure class="mb-0 mr-2">
+                                                        <img src="https://via.placeholder.com/37x37"
+                                                             class="img-xs rounded-circle" alt="user">
+                                                        <div class="status offline"></div>
+                                                    </figure>
+                                                    <div class="d-flex align-items-center justify-content-between flex-grow border-bottom">
+                                                        <div>
+                                                            <p class="text-body">Carl Henson</p>
+                                                            <div class="d-flex align-items-center">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                     height="24" viewBox="0 0 24 24" fill="none"
+                                                                     stroke="currentColor" stroke-width="2"
+                                                                     stroke-linecap="round" stroke-linejoin="round"
+                                                                     class="feather feather-arrow-down-left icon-sm text-danger mr-1">
+                                                                    <line x1="17" y1="7" x2="7" y2="17"></line>
+                                                                    <polyline points="17 17 7 17 7 7"></polyline>
+                                                                </svg>
+                                                                <p class="text-muted tx-13">Today, 04:24 PM</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex flex-column align-items-end">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                 height="24" viewBox="0 0 24 24" fill="none"
+                                                                 stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 class="feather feather-phone-call text-danger icon-md">
+                                                                <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="chat-item pr-1">
+                                                <a href="javascript:;" class="d-flex align-items-center">
+                                                    <figure class="mb-0 mr-2">
+                                                        <img src="https://via.placeholder.com/37x37"
+                                                             class="img-xs rounded-circle" alt="user">
+                                                        <div class="status online"></div>
+                                                    </figure>
+                                                    <div class="d-flex align-items-center justify-content-between flex-grow border-bottom">
+                                                        <div>
+                                                            <p class="text-body">Jensen Combs</p>
+                                                            <div class="d-flex align-items-center">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                     height="24" viewBox="0 0 24 24" fill="none"
+                                                                     stroke="currentColor" stroke-width="2"
+                                                                     stroke-linecap="round" stroke-linejoin="round"
+                                                                     class="feather feather-arrow-down-left icon-sm text-danger mr-1">
+                                                                    <line x1="17" y1="7" x2="7" y2="17"></line>
+                                                                    <polyline points="17 17 7 17 7 7"></polyline>
+                                                                </svg>
+                                                                <p class="text-muted tx-13">Today, 12:53 AM</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex flex-column align-items-end">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                 height="24" viewBox="0 0 24 24" fill="none"
+                                                                 stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 class="feather feather-video text-danger icon-md">
+                                                                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                                                <rect x="1" y="5" width="15" height="14" rx="2"
+                                                                      ry="2"></rect>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="chat-item pr-1">
+                                                <a href="javascript:;" class="d-flex align-items-center">
+                                                    <figure class="mb-0 mr-2">
+                                                        <img src="https://via.placeholder.com/37x37"
+                                                             class="img-xs rounded-circle" alt="user">
+                                                        <div class="status online"></div>
+                                                    </figure>
+                                                    <div class="d-flex align-items-center justify-content-between flex-grow border-bottom">
+                                                        <div>
+                                                            <p class="text-body">John Doe</p>
+                                                            <div class="d-flex align-items-center">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                     height="24" viewBox="0 0 24 24" fill="none"
+                                                                     stroke="currentColor" stroke-width="2"
+                                                                     stroke-linecap="round" stroke-linejoin="round"
+                                                                     class="feather feather-arrow-down-left icon-sm text-success mr-1">
+                                                                    <line x1="17" y1="7" x2="7" y2="17"></line>
+                                                                    <polyline points="17 17 7 17 7 7"></polyline>
+                                                                </svg>
+                                                                <p class="text-muted tx-13">Today, 01:42 AM</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex flex-column align-items-end">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                 height="24" viewBox="0 0 24 24" fill="none"
+                                                                 stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 class="feather feather-video text-success icon-md">
+                                                                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                                                <rect x="1" y="5" width="15" height="14" rx="2"
+                                                                      ry="2"></rect>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="chat-item pr-1">
+                                                <a href="javascript:;" class="d-flex align-items-center">
+                                                    <figure class="mb-0 mr-2">
+                                                        <img src="https://via.placeholder.com/37x37"
+                                                             class="img-xs rounded-circle" alt="user">
+                                                        <div class="status offline"></div>
+                                                    </figure>
+                                                    <div class="d-flex align-items-center justify-content-between flex-grow border-bottom">
+                                                        <div>
+                                                            <p class="text-body">John Doe</p>
+                                                            <div class="d-flex align-items-center">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                     height="24" viewBox="0 0 24 24" fill="none"
+                                                                     stroke="currentColor" stroke-width="2"
+                                                                     stroke-linecap="round" stroke-linejoin="round"
+                                                                     class="feather feather-arrow-up-right icon-sm text-success mr-1">
+                                                                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                                                                    <polyline points="7 7 17 7 17 17"></polyline>
+                                                                </svg>
+                                                                <p class="text-muted tx-13">Today, 12:01 AM</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex flex-column align-items-end">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                 height="24" viewBox="0 0 24 24" fill="none"
+                                                                 stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 class="feather feather-phone-call text-success icon-md">
+                                                                <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-pane fade" id="contacts" role="tabpanel"
+                                         aria-labelledby="contacts-tab">
+                                        <p class="text-muted mb-1">Contacts</p>
+                                        <ul class="list-unstyled chat-list px-1">
+                                            <li class="chat-item pr-1">
+                                                <a href="javascript:;" class="d-flex align-items-center">
+                                                    <figure class="mb-0 mr-2">
+                                                        <img src="https://via.placeholder.com/37x37"
+                                                             class="img-xs rounded-circle" alt="user">
+                                                        <div class="status offline"></div>
+                                                    </figure>
+                                                    <div class="d-flex align-items-center justify-content-between flex-grow border-bottom">
+                                                        <div>
+                                                            <p class="text-body">Amiah Burton</p>
+                                                            <div class="d-flex align-items-center">
+                                                                <p class="text-muted tx-13">Front-end Developer</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-end text-body">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                 height="24" viewBox="0 0 24 24" fill="none"
+                                                                 stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 class="feather feather-message-square icon-md text-success mr-2">
+                                                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                 height="24" viewBox="0 0 24 24" fill="none"
+                                                                 stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 class="feather feather-phone-call icon-md text-primary mr-2">
+                                                                <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                 height="24" viewBox="0 0 24 24" fill="none"
+                                                                 stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 class="feather feather-video icon-md text-danger">
+                                                                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                                                <rect x="1" y="5" width="15" height="14" rx="2"
+                                                                      ry="2"></rect>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="chat-item pr-1">
+                                                <a href="javascript:;" class="d-flex align-items-center">
+                                                    <figure class="mb-0 mr-2">
+                                                        <img src="https://via.placeholder.com/37x37"
+                                                             class="img-xs rounded-circle" alt="user">
+                                                        <div class="status online"></div>
+                                                    </figure>
+                                                    <div class="d-flex align-items-center justify-content-between flex-grow border-bottom">
+                                                        <div>
+                                                            <p class="text-body">John Doe</p>
+                                                            <div class="d-flex align-items-center">
+                                                                <p class="text-muted tx-13">Back-end Developer</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-end text-body">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                 height="24" viewBox="0 0 24 24" fill="none"
+                                                                 stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 class="feather feather-message-square icon-md text-success mr-2">
+                                                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                 height="24" viewBox="0 0 24 24" fill="none"
+                                                                 stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 class="feather feather-phone-call icon-md text-primary mr-2">
+                                                                <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                 height="24" viewBox="0 0 24 24" fill="none"
+                                                                 stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 class="feather feather-video icon-md text-danger">
+                                                                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                                                <rect x="1" y="5" width="15" height="14" rx="2"
+                                                                      ry="2"></rect>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="chat-item pr-1">
+                                                <a href="javascript:;" class="d-flex align-items-center">
+                                                    <figure class="mb-0 mr-2">
+                                                        <img src="https://via.placeholder.com/37x37"
+                                                             class="img-xs rounded-circle" alt="user">
+                                                        <div class="status offline"></div>
+                                                    </figure>
+                                                    <div class="d-flex align-items-center justify-content-between flex-grow border-bottom">
+                                                        <div>
+                                                            <p class="text-body">Yaretzi Mayo</p>
+                                                            <div class="d-flex align-items-center">
+                                                                <p class="text-muted tx-13">Fullstack Developer</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-end text-body">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                 height="24" viewBox="0 0 24 24" fill="none"
+                                                                 stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 class="feather feather-message-square icon-md text-success mr-2">
+                                                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                 height="24" viewBox="0 0 24 24" fill="none"
+                                                                 stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 class="feather feather-phone-call icon-md text-primary mr-2">
+                                                                <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                 height="24" viewBox="0 0 24 24" fill="none"
+                                                                 stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 class="feather feather-video icon-md text-danger">
+                                                                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                                                <rect x="1" y="5" width="15" height="14" rx="2"
+                                                                      ry="2"></rect>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="chat-item pr-1">
+                                                <a href="javascript:;" class="d-flex align-items-center">
+                                                    <figure class="mb-0 mr-2">
+                                                        <img src="https://via.placeholder.com/37x37"
+                                                             class="img-xs rounded-circle" alt="user">
+                                                        <div class="status offline"></div>
+                                                    </figure>
+                                                    <div class="d-flex align-items-center justify-content-between flex-grow border-bottom">
+                                                        <div>
+                                                            <p class="text-body">John Doe</p>
+                                                            <div class="d-flex align-items-center">
+                                                                <p class="text-muted tx-13">Front-end Developer</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-end text-body">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                 height="24" viewBox="0 0 24 24" fill="none"
+                                                                 stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 class="feather feather-message-square icon-md text-success mr-2">
+                                                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                 height="24" viewBox="0 0 24 24" fill="none"
+                                                                 stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 class="feather feather-phone-call icon-md text-primary mr-2">
+                                                                <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                 height="24" viewBox="0 0 24 24" fill="none"
+                                                                 stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 class="feather feather-video icon-md text-danger">
+                                                                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                                                <rect x="1" y="5" width="15" height="14" rx="2"
+                                                                      ry="2"></rect>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="ps__rail-x" style="left: 0px; bottom: -81px;">
+                                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                                    </div>
+                                    <div class="ps__rail-y" style="top: 81px; height: 582px; right: 0px;">
+                                        <div class="ps__thumb-y" tabindex="0" style="top: 71px; height: 511px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!--    <script th:src="@{/ta/js/call/callList.js}"></script>-->
+    <script th:src="@{/ta/js/chat/chat.js}"></script>
 </div><!-- end of content -->
 </html>

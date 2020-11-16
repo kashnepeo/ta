@@ -25,7 +25,8 @@ public class CodeManagerUtil {
     public static String[][] _centerTypeArray = {
             {"centerType", "SEOUL", "서울"},
             {"centerType", "BUSAN", "부산"},
-            {"centerType", "DAEGU", "대구"}
+            {"centerType", "DAEGU", "대구"},
+            {"centerType", "Okcheon", "옥천"}
     };
 
     public static String[][] _timeTypeArray = {
